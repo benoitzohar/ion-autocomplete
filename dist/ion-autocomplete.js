@@ -8,6 +8,16 @@
 
 'use strict';
 
+/*
+ * ion-autocomplete 0.3.0
+ * Copyright 2015 Danny Povolotski 
+ * Copyright modifications 2015 Guy Brand 
+ * https://github.com/guylabs/ion-autocomplete
+ */
+(function() {
+
+'use strict';
+
 angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
     '$ionicBackdrop', '$ionicScrollDelegate', '$document', '$q', '$parse', '$interpolate', '$ionicPlatform', '$compile', '$templateRequest',
     function ($ionicBackdrop, $ionicScrollDelegate, $document, $q, $parse, $interpolate, $ionicPlatform, $compile, $templateRequest) {
@@ -28,7 +38,10 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 placeholder: '@',
                 cancelLabel: '@',
                 selectItemsLabel: '@',
-                selectedItemsLabel: '@'
+                selectedItemsLabel: '@',
+                itemsMethodValueKey: '@',
+                itemValueKey: '@',
+                itemViewValueKey: '@'
             },
             controllerAs: 'viewModel',
             controller: function ($attrs, $timeout) {
@@ -50,9 +63,9 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 // set the default values of the passed in attributes
                 this.maxSelectedItems = valueOrDefault($attrs.maxSelectedItems, undefined);
                 this.templateUrl = valueOrDefault($attrs.templateUrl, undefined);
-                this.itemsMethodValueKey = valueOrDefault($attrs.itemsMethodValueKey, undefined);
-                this.itemValueKey = valueOrDefault($attrs.itemValueKey, undefined);
-                this.itemViewValueKey = valueOrDefault($attrs.itemViewValueKey, undefined);
+                this.itemsMethodValueKey = valueOrDefault(controller.itemsMethodValueKey, undefined);
+                this.itemValueKey = valueOrDefault(controller.itemValueKey, undefined);
+                this.itemViewValueKey = valueOrDefault(controller.itemViewValueKey, undefined);
                 this.componentId = valueOrDefault($attrs.componentId, undefined);
                 this.loadingIcon = valueOrDefault($attrs.loadingIcon, undefined);
                 this.manageExternally = valueOrDefault($attrs.manageExternally, "false");
@@ -423,4 +436,5 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
         };
     }
 ]);
+})();
 })();
